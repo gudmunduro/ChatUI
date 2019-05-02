@@ -7,7 +7,7 @@ class User {
 
     static async login (username, password) {
         try {
-            const response = await axios.get("http://10.11.45.27:80/user/login", {
+            const response = await axios.get("http://localhost:8080/user/login", {
                 auth: {
                     username,
                     password 
@@ -26,7 +26,9 @@ class User {
 class Chat {
 
     constructor() {
-        this.socket = new WebSocket("http://10.11.45.27:80/connect/" + User.token);
+        console.log("1")
+        this.socket = new WebSocket("ws://localhost:8080/connect/?token=" + User.token);
+        console.log("2")
         this.socket.onopen = this.onOpen;
         this.socket.onmessage = this.onMessage;
         this.socket.onclose = this.onClose;
