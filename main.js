@@ -54,6 +54,7 @@ class Chat {
     onSendButton(e) {
         const text = document.getElementById("sendInput").value;
         if (text == "") return;
+        document.getElementById("sendInput").value = "";
 
         this.socket.send(text);
     }
