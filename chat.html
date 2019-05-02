@@ -3,6 +3,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="main.css">
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="./main.js"></script>
         <title>Net chatapp</title>
@@ -12,19 +13,27 @@
             <h2 id="servername">Global</h2>
         </header>
 
-        <section id="left_userlist_wrapper">
-            <ul id="userlist">
+        <div class="sectionContainer">
+            <section id="left_userlist_wrapper">
+                <ul id="userlist">
+    
+                </ul>
+            </section>
 
-            </ul>
-        </section>
-
-        <main>
-
-        </main>
-
-        <section id="right_userinfo">
-
-        </section>
+            <main>
+                <section class="messages">
+                    
+                </section>
+                <section class="sendbox">
+                    <input type="text" id="sendInput" placeholder="Message">
+                    <a id="sendButton">Send</a>
+                </section>
+            </main>
+    
+            <section id="right_userinfo">
+    
+            </section>
+        </div>
 
         <footer>
 
