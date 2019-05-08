@@ -10,7 +10,7 @@ class User {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.token;
 
         try {
-            const response = await axios.get("http://localhost:8080/user/test");
+            const response = await axios.get("https://chatapp.fisedush.com/user/test");
             console.log(response);
             return response.status === 200;
         } catch (error) {
@@ -21,7 +21,7 @@ class User {
 
     static async login (username, password) {
         try {
-            const response = await axios.get("http://localhost:8080/user/login", {
+            const response = await axios.get("https://chatapp.fisedush.com/user/login", {
                 auth: {
                     username,
                     password 
@@ -42,7 +42,7 @@ class Chat {
 
     constructor() {
         console.log("1")
-        this.socket = new WebSocket("ws://localhost:8080/connect/?token=" + User.token);
+        this.socket = new WebSocket("ws://chatapp.fisedush.com/connect/?token=" + User.token);
         console.log("2")
         this.socket.onopen = this.onOpen;
         this.socket.onmessage = this.onMessage;
