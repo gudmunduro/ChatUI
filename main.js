@@ -51,6 +51,21 @@ class Chat {
         document.getElementById('sendButton').addEventListener('click', this.onSendButton.bind(this));
     }
 
+    renderMessages(messageArray){
+        messageArray.forEach(messageObject => {
+            const messageElement = document.createElement("b");
+            const senderElement = document.createElement("span");
+            const messageContentElement = document.createElement("i");
+
+            senderElement.innerText = "Sender";
+            messageContentElement.innerText = messageObject.message;
+
+            messageElement.appendChild(senderElement);
+            messageElement.appendChild(messageContentElement);
+            document.getElementById("messageBox").appendChild(messageElement);
+        });
+    }
+
     onSendButton(e) {
         const text = document.getElementById("sendInput").value;
         if (text == "") return;
@@ -64,13 +79,32 @@ class Chat {
     }
 
     onMessage(e) {
-        console.log(e);
+        if (e.data.startsWith("[")) {
+            const dataObject = JSON.parse(e.data);
+        } else {
+            console.log("Received message " + e.data);
+        }
     }
 
     onClose(e) {
         console.log(e);
     }
 
+}
+
+async function onLoginButtonClick()
+{
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    await User.login(username, password);
+    if (User.loggedIn) {
+        document.removeChild(document.getElementById("username"));
+        document.removeChild(document.getElementById("password"));
+        document.removeChild(document.getElementById("loginButton"));
+        window.chatInstance = new Chat();
+    } else {
+
+    }
 }
 
 window.addEventListener('load', e => {
@@ -82,4 +116,6 @@ window.addEventListener('load', e => {
             console.log("not logged in");
         }
     });
+
+    document.getElementById("loginButton").addEventListener('click', onLoginButtonClick);
 });
