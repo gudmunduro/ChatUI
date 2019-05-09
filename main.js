@@ -56,12 +56,14 @@ class Chat {
             const messageElement = document.createElement("b");
             const senderElement = document.createElement("span");
             const messageContentElement = document.createElement("i");
+            const brEl = document.createElement("br");
 
             senderElement.innerText = "Sender";
             messageContentElement.innerText = messageObject.message;
 
             messageElement.appendChild(senderElement);
             messageElement.appendChild(messageContentElement);
+            messageElement.appendChild(brEl);
             document.getElementById("messageBox").appendChild(messageElement);
         });
     }
